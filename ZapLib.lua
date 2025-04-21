@@ -170,7 +170,7 @@ if not isfolder(_) then
 end
 local function a2(a3)
     local a4 =
-        type(_G.ZapSettings) == h("\149\45\207\30\226", "\135\225\76\173\114") and _G["ZapSettings"] or s:JSONDecode(a3)
+        (type(_G.ZapSettings) == h("\149\45\207\30\226", "\135\225\76\173\114") and _G["ZapSettings"]) or (type(readfile(a3) == "string" and s:JSONDecode(readfile(a3))) or {}
     for a5, a6 in pairs(a4) do
         v["Flags"][a5] = a6
     end
@@ -483,7 +483,7 @@ v.CreateWindow = function(self, an)
     S["Image"] = p:GetUserThumbnailAsync(q.UserId, Enum["ThumbnailType"].HeadShot, Enum["ThumbnailSize"].Size420x420)
     B["Position"] = aC or UDim2.new(0.5, 0, 0, 15)
     if isfile(a1) or type(_G.ZapSettings) == h("\4\87\129\135\131", "\144\112\54\227\235\230\78\205") then
-        a2(readfile(a1))
+        a2(a1)
         v:Notify(
             {
                 [h("\135\33\27\240\213", "\59\211\72\111\156\176")] = h(
