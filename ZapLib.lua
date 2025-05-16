@@ -151,8 +151,12 @@ if not isfolder(ConfigurationFolder) then
 	makefolder(ConfigurationFolder)
 end
 
-local function LoadConfiguration(Configuration)
-	local Data = type(_G.ZapSettings) == "table" and _G.ZapSettings or HttpService:JSONDecode(Configuration)
+if not isfile(ConfigurationFile) then
+	writefile(ConfigurationFile, "")
+end
+
+local function LoadConfiguration()
+	local Data = type(_G.ZapSettings) == "table" and _G.ZapSettings or HttpService:JSONDecode(readfile(ZapPath))
 	for FlagName, FlagValue in pairs(Data) do
 		Library.Flags[FlagName] = FlagValue
 	end
@@ -346,7 +350,7 @@ function Library:CreateWindow(Settings)
 	Frame_2.Position = OpenButtonPosition or UDim2.new(0.5, 0, 0, 15)
 
 	if isfile(ZapPath) or type(_G.ZapSettings) == "table" then
-		LoadConfiguration(readfile(ZapPath))
+		LoadConfiguration()
 		Library:Notify({
 			Title = "Configuration Loaded",
 			Content = "The configuration of ZapHub has been loaded from a previous session.",
