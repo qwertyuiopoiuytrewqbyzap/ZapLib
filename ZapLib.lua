@@ -1,3 +1,4 @@
+--Testing
 local a = string["char"]
 local b = string["byte"]
 local c = string["sub"]
