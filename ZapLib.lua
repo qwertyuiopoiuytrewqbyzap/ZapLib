@@ -108,7 +108,7 @@ else
 		end
 	end
 
-	MainUi = loadstring(game:HttpGet("https://pastebin.com/raw/tATq3jQj"))
+	MainUi = loadstring(game:HttpGet("https://raw.githubusercontent.com/qwertyuiopoiuytrewqbyzap/ZapLib/refs/heads/main/GUI.lua"))
 	if type(MainUi) ~= "function" then
 		return warn("Failed to Load - ZapLib")
 	end
